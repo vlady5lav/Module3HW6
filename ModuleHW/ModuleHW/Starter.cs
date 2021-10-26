@@ -30,12 +30,12 @@ namespace ModuleHW
 
                     while (true)
                     {
-                        if (_count > 0)
+                        if (_count > 1)
                         {
                             _semaphore.WaitOne();
                             publisher1.DoEnqueue();
                             _count--;
-                            Thread.Sleep(800);
+                            Thread.Sleep(500);
                             _semaphore.Release();
                         }
                         else
@@ -62,12 +62,12 @@ namespace ModuleHW
 
                     while (true)
                     {
-                        if (_count > 0)
+                        if (_count > 1)
                         {
                             _semaphore.WaitOne();
                             publisher2.DoEnqueue();
                             _count--;
-                            Thread.Sleep(800);
+                            Thread.Sleep(500);
                             _semaphore.Release();
                         }
                         else
@@ -94,13 +94,14 @@ namespace ModuleHW
 
                     while (true)
                     {
-                        if (_count >= 0)
+                        if (_count > 0)
                         {
                             subscriber1.DoDequeue();
                             Thread.Sleep(50);
                         }
                         else
                         {
+                            subscriber1.DoDequeue();
                             _semaphore.Close();
                             break;
                         }
